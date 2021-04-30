@@ -8,6 +8,10 @@ body {
   font-size: 32px;
 }
 
+.mb-20 {
+  margin-bottom: 20px;
+}
+
 .container {
   width: 400px;
   margin: 0 auto;
@@ -39,4 +43,12 @@ body {
 
 .startButton:hover {
   opacity: 0.7;
+}
+
+.question {
+  color: gray;
+}
+
+.clear {
+  color: #03a9f4;
 }
