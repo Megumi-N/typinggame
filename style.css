@@ -52,3 +52,13 @@ body {
 .clear {
   color: #03a9f4;
 }
+
+.typeForm {
+  text-align: center;
+  outline: none;
+  border: none;
+}
+
+.typeFormWrapper {
+  border-bottom: 1px solid gray;
+}
