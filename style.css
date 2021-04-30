@@ -62,3 +62,12 @@ body {
 .typeFormWrapper {
   border-bottom: 1px solid gray;
 }
+
+.guage {
+  height: 12px;
+}
+
+.guageWrapper {
+  border: 1px solid;
+  height: 12px;
+}
