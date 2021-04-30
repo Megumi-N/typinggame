@@ -25,6 +25,9 @@ const vm = new Vue({
   methods: {
     gameStart: function () {
       this.startFlg = true;
+      this.$nextTick(function () {
+        document.getElementById("typeForm").focus();
+      });
     },
   },
   mounted: function () {
