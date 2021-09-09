@@ -11,7 +11,7 @@
       <v-col>
         <v-btn v-if="startFlag != true" @click="changeFlg">start</v-btn>
         <v-row
-          v-if="startFlag == true && current_question_counts <= question_counts"
+          v-if="startFlag == true && current_question_counts < question_counts"
         >
           <v-col>
             <div>{{ current_question }}</div>
@@ -23,11 +23,16 @@
               >
               </v-text-field>
             </div>
+            <v-progress-linear
+              v-model="power"
+              color="amber"
+              height="25"
+            ></v-progress-linear>
             <div>{{ current_question_counts }}/{{ question_counts }}</div>
           </v-col>
         </v-row>
         <v-row
-          v-if="startFlag == true && current_question_counts > question_counts"
+          v-if="startFlag == true && current_question_counts == question_counts"
           ><v-col>クリア</v-col></v-row
         >
       </v-col>
@@ -43,8 +48,9 @@ export default {
       current_question: "",
       questions: ["apple", "banana"],
       nextQuestion: "",
-      current_question_counts: 1, //今何問目か
+      current_question_counts: 0, //今何問目か
       question_counts: 0,
+      power: 0,
     };
   },
   methods: {
@@ -65,6 +71,8 @@ export default {
         this.current_question = this.questions[0];
         this.nextQuestion = "";
         this.current_question_counts += 1;
+        this.power =
+          (100 / this.question_counts) * this.current_question_counts;
       }
     },
   },
