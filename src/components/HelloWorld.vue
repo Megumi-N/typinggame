@@ -12,7 +12,7 @@
         <v-btn v-if="startFlag != true" @click="changeFlg">start</v-btn>
         <v-row v-if="startFlag == true">
           <v-col>
-            <div>apple</div>
+            <div>{{ current_question }}</div>
             <div>
               <v-text-field hide-details="auto"></v-text-field>
             </div>
@@ -28,13 +28,17 @@ export default {
   data() {
     return {
       startFlag: "",
-      questions: ["apple", "orange"],
+      current_question: "",
+      questions: ["apple", "banana"],
     };
   },
   methods: {
     changeFlg() {
       this.startFlag = true;
     },
+  },
+  mounted: function () {
+    this.current_question = this.questions[0];
   },
 };
 </script>
