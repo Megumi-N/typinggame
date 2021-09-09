@@ -14,7 +14,12 @@
           <v-col>
             <div>{{ current_question }}</div>
             <div>
-              <v-text-field hide-details="auto"></v-text-field>
+              <v-text-field
+                class="text-field"
+                id="textField"
+                v-model="nextQuestion"
+              >
+              </v-text-field>
             </div>
           </v-col>
         </v-row>
@@ -30,15 +35,35 @@ export default {
       startFlag: "",
       current_question: "",
       questions: ["apple", "banana"],
+      nextQuestion: "",
     };
   },
   methods: {
     changeFlg() {
       this.startFlag = true;
+      this.$nextTick(() => document.getElementById("textField").focus()); //nextTick -> DOM更新後に実行
     },
   },
-  mounted: function () {
-    this.current_question = this.questions[0];
-  },
+  // mounted: function () {
+  //   this.current_question = this.questions[0];
+  // },
+  // watch: {
+  //   nextQuestion: function (e) {
+  //     if (e == this.current_question) {
+  //       this.questions.splice(0, 1);
+  //       this.current_question = this.questions[0];
+  //       this.nextQuestion = "";
+  //     }
+  //   },
+  // },
 };
 </script>
+
+<style lang="scss">
+.text-field {
+  width: 30em;
+  input {
+    text-align: center;
+  }
+}
+</style>
