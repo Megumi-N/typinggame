@@ -13,7 +13,7 @@
         <v-row v-if="startFlag == true">
           <v-col>
             <div>{{ current_question }}</div>
-            <div>
+            <div class="text-center">
               <v-text-field
                 class="text-field"
                 id="textField"
@@ -44,24 +44,24 @@ export default {
       this.$nextTick(() => document.getElementById("textField").focus()); //nextTick -> DOM更新後に実行
     },
   },
-  // mounted: function () {
-  //   this.current_question = this.questions[0];
-  // },
-  // watch: {
-  //   nextQuestion: function (e) {
-  //     if (e == this.current_question) {
-  //       this.questions.splice(0, 1);
-  //       this.current_question = this.questions[0];
-  //       this.nextQuestion = "";
-  //     }
-  //   },
-  // },
+  mounted: function () {
+    // DOMが作成された直後の処理
+    this.current_question = this.questions[0];
+  },
+  watch: {
+    nextQuestion: function (e) {
+      if (e == this.current_question) {
+        this.questions.splice(0, 1);
+        this.current_question = this.questions[0];
+        this.nextQuestion = "";
+      }
+    },
+  },
 };
 </script>
 
 <style lang="scss">
 .text-field {
-  width: 30em;
   input {
     text-align: center;
   }
