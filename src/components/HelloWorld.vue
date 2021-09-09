@@ -26,10 +26,10 @@
             <div>{{ current_question_counts }}/{{ question_counts }}</div>
           </v-col>
         </v-row>
-        <!-- <v-row
+        <v-row
           v-if="startFlag == true && current_question_counts > question_counts"
           ><v-col>クリア</v-col></v-row
-        > -->
+        >
       </v-col>
     </v-row>
   </v-container>
