@@ -10,7 +10,9 @@
     <v-row class="text-center">
       <v-col>
         <v-btn v-if="startFlag != true" @click="changeFlg">start</v-btn>
-        <v-row v-if="startFlag == true">
+        <v-row
+          v-if="startFlag == true && current_question_counts <= question_counts"
+        >
           <v-col>
             <div>{{ current_question }}</div>
             <div class="text-center">
@@ -21,8 +23,13 @@
               >
               </v-text-field>
             </div>
+            <div>{{ current_question_counts }}/{{ question_counts }}</div>
           </v-col>
         </v-row>
+        <!-- <v-row
+          v-if="startFlag == true && current_question_counts > question_counts"
+          ><v-col>クリア</v-col></v-row
+        > -->
       </v-col>
     </v-row>
   </v-container>
@@ -36,6 +43,8 @@ export default {
       current_question: "",
       questions: ["apple", "banana"],
       nextQuestion: "",
+      current_question_counts: 1, //今何問目か
+      question_counts: 0,
     };
   },
   methods: {
@@ -45,8 +54,9 @@ export default {
     },
   },
   mounted: function () {
-    // DOMが作成された直後の処理
+    // DOMが作成された直後の処理(ページ読み込み時に実行)
     this.current_question = this.questions[0];
+    this.question_counts = this.questions.length;
   },
   watch: {
     nextQuestion: function (e) {
@@ -54,6 +64,7 @@ export default {
         this.questions.splice(0, 1);
         this.current_question = this.questions[0];
         this.nextQuestion = "";
+        this.current_question_counts += 1;
       }
     },
   },
