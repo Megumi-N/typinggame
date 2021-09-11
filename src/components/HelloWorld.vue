@@ -1,20 +1,40 @@
 <template>
   <v-container>
-    <v-row class="text-center">
-      <v-col class="mb-4">
-        <h1 class="display-2 font-weight-bold mb-3">
-          Typing Game
-        </h1>
-      </v-col>
-    </v-row>
-    <v-row class="text-center">
+    <!-- コンテンツ部分 -->
+    <v-row class="text-center mt-10">
       <v-col>
-        <v-btn v-if="startFlag != true" @click="changeFlg">start</v-btn>
+        <!-- Top -->
+        <v-row v-if="startFlag != true" class="text-center mt-10">
+          <v-col class="mb-4">
+            <!-- タイトル部分 -->
+            <div class="display-2 font-weight-bold mb-3 item delay-anime">
+              <span
+                v-for="(t, index) in title"
+                :key="index"
+                class="item"
+                :style="{ animationDelay: index * 100 + 'ms' }"
+                v-text="t"
+              >
+              </span>
+            </div>
+            <div class="mt-5">please click me!!</div>
+            <v-btn
+              color="#5f32b1"
+              class="button mt-3"
+              dark
+              @click="changeFlg"
+              rounded
+              >{{ start_btn }}
+            </v-btn>
+          </v-col>
+        </v-row>
+
+        <!-- ボタン押下後 -->
         <v-row
           v-if="startFlag == true && current_question_counts < question_counts"
         >
           <v-col>
-            <div>{{ current_question }}</div>
+            <div class="quesiton">{{ current_question }}</div>
             <div class="text-center">
               <v-text-field
                 class="text-field"
@@ -24,17 +44,19 @@
               </v-text-field>
             </div>
             <v-progress-linear
-              v-model="power"
-              color="amber"
+              v-model="guage_process"
+              color="light-green darken-1"
               height="25"
+              rounded
             ></v-progress-linear>
             <div>{{ current_question_counts }}/{{ question_counts }}</div>
           </v-col>
         </v-row>
         <v-row
           v-if="startFlag == true && current_question_counts == question_counts"
-          ><v-col>クリア</v-col></v-row
         >
+          <v-col>クリア</v-col>
+        </v-row>
       </v-col>
     </v-row>
   </v-container>
@@ -44,6 +66,8 @@
 export default {
   data() {
     return {
+      title: "typing game",
+      start_btn: "じゅげむる",
       startFlag: "",
       current_question: "",
       questions: [
@@ -70,7 +94,8 @@ export default {
       nextQuestion: "",
       current_question_counts: 0, //今何問目か
       question_counts: 0,
-      power: 0,
+      guage_process: 0,
+      timerCount: 30,
     };
   },
   methods: {
@@ -91,7 +116,7 @@ export default {
         this.current_question = this.questions[0];
         this.nextQuestion = "";
         this.current_question_counts += 1;
-        this.power =
+        this.guage_process =
           (100 / this.question_counts) * this.current_question_counts;
       }
     },
@@ -100,9 +125,33 @@ export default {
 </script>
 
 <style lang="scss">
+@import url("https://fonts.googleapis.com/css2?family=Potta+One&display=swap");
+
+* {
+  font-family: "Potta One", cursive;
+}
+
+@keyframes text-in {
+  0% {
+    transform: translate(0, -20px);
+    opacity: 0;
+  }
+}
+
+.item {
+  display: inline-block;
+  min-width: 0.3rem;
+  font-size: 5rem;
+  animation: text-in 0.8s cubic-bezier(0.22, 0.15, 0.25, 1.43) 0s backwards;
+}
+
 .text-field {
   input {
     text-align: center;
   }
+}
+
+.quesiton {
+  font-size: 5rem;
 }
 </style>
