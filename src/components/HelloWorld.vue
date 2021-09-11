@@ -52,10 +52,16 @@
             <div>{{ current_question_counts }}/{{ question_counts }}</div>
           </v-col>
         </v-row>
+
         <v-row
           v-if="startFlag == true && current_question_counts == question_counts"
+          @change="start"
         >
-          <v-col>クリア</v-col>
+          <v-col>
+            <div class="clear">
+              クリア
+            </div>
+          </v-col>
         </v-row>
       </v-col>
     </v-row>
@@ -71,37 +77,58 @@ export default {
       startFlag: "",
       current_question: "",
       questions: [
-        "寿限無",
-        "寿限無",
-        "五劫のすりきれ",
-        "海砂利水魚の水行末",
-        "雲来末",
-        "風来末",
-        "食う寝るところに",
-        "住むところ",
-        "やぶらこうじの",
-        "ぶらこうじ",
-        "パイポ",
-        "パイポ",
-        "パイポの",
-        "シューリンガン",
-        "シューリンガンの",
-        "グーリンダイ",
-        "グーリンダイの",
-        "ポンポコピーのポンポコナの",
-        "長久命の長助",
+        "あ",
+        // "寿限無",
+        // "寿限無",
+        // "五劫のすりきれ",
+        // "海砂利水魚の水行末",
+        // "雲来末",
+        // "風来末",
+        // "食う寝るところに",
+        // "住むところ",
+        // "やぶらこうじの",
+        // "ぶらこうじ",
+        // "パイポ",
+        // "パイポ",
+        // "パイポの",
+        // "シューリンガン",
+        // "シューリンガンの",
+        // "グーリンダイ",
+        // "グーリンダイの",
+        // "ポンポコピーのポンポコナの",
+        // "長久命の長助",
       ],
       nextQuestion: "",
       current_question_counts: 0, //今何問目か
       question_counts: 0,
       guage_process: 0,
-      timerCount: 30,
     };
   },
   methods: {
     changeFlg() {
       this.startFlag = true;
       this.$nextTick(() => document.getElementById("textField").focus()); //nextTick -> DOM更新後に実行
+    },
+    start() {
+      this.$confetti.start();
+    },
+
+    stop() {
+      this.$confetti.stop();
+    },
+
+    love() {
+      this.$confetti.update({
+        particles: [
+          {
+            type: "heart",
+          },
+          {
+            type: "circle",
+          },
+        ],
+        defaultColors: ["red", "pink", "#ba0000"],
+      });
     },
   },
   mounted: function () {
@@ -152,6 +179,10 @@ export default {
 }
 
 .quesiton {
+  font-size: 5rem;
+}
+
+.clear {
   font-size: 5rem;
 }
 </style>
