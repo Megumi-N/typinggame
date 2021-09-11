@@ -61,6 +61,15 @@
             <div class="clear">
               クリア
             </div>
+            <v-btn
+              @click="reload"
+              color="#5f32b1"
+              class="button mt-3"
+              dark
+              rounded
+            >
+              {{ reloadBtn }}
+            </v-btn>
           </v-col>
         </v-row>
       </v-col>
@@ -102,6 +111,7 @@ export default {
       current_question_counts: 0, //今何問目か
       question_counts: 0,
       guage_process: 0,
+      reloadBtn: "もう一度挑戦する",
     };
   },
   methods: {
@@ -112,23 +122,8 @@ export default {
     start() {
       this.$confetti.start();
     },
-
-    stop() {
-      this.$confetti.stop();
-    },
-
-    love() {
-      this.$confetti.update({
-        particles: [
-          {
-            type: "heart",
-          },
-          {
-            type: "circle",
-          },
-        ],
-        defaultColors: ["red", "pink", "#ba0000"],
-      });
+    reload() {
+      location.reload();
     },
   },
   mounted: function () {
