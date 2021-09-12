@@ -17,11 +17,16 @@
               >
               </span>
             </div>
-            <div class="mt-5">please click me!!</div>
+
+            <div class="mt-5">
+              30秒で寿限無を打ち切れるか？<br />
+              挑戦者はボタンをクリック！
+            </div>
             <v-btn
               color="#5f32b1"
               class="button mt-3"
               dark
+              large
               @click="changeFlg"
               rounded
               >{{ start_btn }}
@@ -38,9 +43,7 @@
           "
         >
           <v-col>
-            <div>
-              {{ sec }}
-            </div>
+            <div>残り：{{ sec }}秒</div>
             <div class="quesiton">{{ current_question }}</div>
             <div class="text-center">
               <v-text-field
@@ -56,23 +59,23 @@
               height="25"
               rounded
             ></v-progress-linear>
-            <div>{{ current_question_counts }}/{{ question_counts }}</div>
+            <div>進捗：{{ current_question_counts }}/{{ question_counts }}</div>
           </v-col>
         </v-row>
 
+        <!-- 時間ぎれ -->
         <v-row
           v-if="
             startFlag == true &&
             current_question_counts != question_counts &&
             sec == 0
           "
-          @change="start"
         >
           <v-col>
-            <div class="clear">
+            <p class="clear TextRandomAnime">
               タイムアウト
-            </div>
-            <div>残念</div>
+            </p>
+            <div>残念でした...</div>
             <v-btn
               @click="reload"
               color="#5f32b1"
@@ -94,10 +97,25 @@
             <div class="clear">
               クリア
             </div>
+            <div>
+              おめでとう！<br />
+              今日から君はじゅげむマスターだ！
+            </div>
+            <div>
+              <font-awesome-icon :icon="['fab', 'fa-twitter']" />
+              <a
+                href="https://twitter.com/intent/tweet?text=クリアしたよ！&url=https://flamboyant-beaver-eb2250.netlify.app"
+                target="_blank"
+                rel="noopener noreferrer"
+                ><font-awesome-icon
+                  :icon="['fab', 'twitter']"
+                />twitterで自慢する</a
+              >
+            </div>
             <v-btn
               @click="reload"
               color="#5f32b1"
-              class="button mt-3"
+              class="button mt-3 clearbtn"
               dark
               rounded
             >
@@ -119,33 +137,32 @@ export default {
       startFlag: "",
       current_question: "",
       questions: [
-        "あ",
-        // "寿限無",
-        // "寿限無",
-        // "五劫のすりきれ",
-        // "海砂利水魚の水行末",
-        // "雲来末",
-        // "風来末",
-        // "食う寝るところに",
-        // "住むところ",
-        // "やぶらこうじの",
-        // "ぶらこうじ",
-        // "パイポ",
-        // "パイポ",
-        // "パイポの",
-        // "シューリンガン",
-        // "シューリンガンの",
-        // "グーリンダイ",
-        // "グーリンダイの",
-        // "ポンポコピーのポンポコナの",
-        // "長久命の長助",
+        "寿限無",
+        "寿限無",
+        "五劫のすりきれ",
+        "海砂利水魚の水行末",
+        "雲来末",
+        "風来末",
+        "食う寝るところに",
+        "住むところ",
+        "やぶらこうじの",
+        "ぶらこうじ",
+        "パイポ",
+        "パイポ",
+        "パイポの",
+        "シューリンガン",
+        "シューリンガンの",
+        "グーリンダイ",
+        "グーリンダイの",
+        "ポンポコピーのポンポコナの",
+        "長久命の長助",
       ],
       nextQuestion: "",
       current_question_counts: 0, //今何問目か
       question_counts: 0,
       guage_process: 0,
-      reloadBtn: "もう一度挑戦する",
-      sec: 5,
+      reloadBtn: "もう一度じゅげむする",
+      sec: 30,
     };
   },
   methods: {
@@ -197,6 +214,10 @@ export default {
   font-family: "Potta One", cursive;
 }
 
+button {
+  height: 3em !important;
+  font-size: 2em !important;
+}
 @keyframes text-in {
   0% {
     transform: translate(0, -20px);
@@ -223,5 +244,8 @@ export default {
 
 .clear {
   font-size: 5rem;
+}
+.clearbtn {
+  background-color: rgb(35, 175, 82) !important;
 }
 </style>
