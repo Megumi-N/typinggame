@@ -31,9 +31,16 @@
 
         <!-- ボタン押下後 -->
         <v-row
-          v-if="startFlag == true && current_question_counts < question_counts"
+          v-if="
+            startFlag == true &&
+            current_question_counts < question_counts &&
+            sec > 0
+          "
         >
           <v-col>
+            <div>
+              {{ sec }}
+            </div>
             <div class="quesiton">{{ current_question }}</div>
             <div class="text-center">
               <v-text-field
@@ -53,6 +60,32 @@
           </v-col>
         </v-row>
 
+        <v-row
+          v-if="
+            startFlag == true &&
+            current_question_counts != question_counts &&
+            sec == 0
+          "
+          @change="start"
+        >
+          <v-col>
+            <div class="clear">
+              タイムアウト
+            </div>
+            <div>残念</div>
+            <v-btn
+              @click="reload"
+              color="#5f32b1"
+              class="button mt-3"
+              dark
+              rounded
+            >
+              {{ reloadBtn }}
+            </v-btn>
+          </v-col>
+        </v-row>
+
+        <!-- クリア -->
         <v-row
           v-if="startFlag == true && current_question_counts == question_counts"
           @change="start"
@@ -112,11 +145,13 @@ export default {
       question_counts: 0,
       guage_process: 0,
       reloadBtn: "もう一度挑戦する",
+      sec: 5,
     };
   },
   methods: {
     changeFlg() {
       this.startFlag = true;
+      this.timer();
       this.$nextTick(() => document.getElementById("textField").focus()); //nextTick -> DOM更新後に実行
     },
     start() {
@@ -124,6 +159,15 @@ export default {
     },
     reload() {
       location.reload();
+    },
+    timer() {
+      setInterval(() => {
+        if (this.sec > 0) {
+          this.sec -= 1;
+        } else {
+          clearInterval;
+        }
+      }, 1000);
     },
   },
   mounted: function () {
