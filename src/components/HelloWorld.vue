@@ -19,7 +19,7 @@
             </div>
 
             <div class="mt-5">
-              30秒で寿限無を打ち切れるか？<br />
+              45秒で寿限無を打ち切れるか？<br />
               挑戦者はボタンをクリック！
             </div>
             <v-btn
@@ -104,7 +104,7 @@
             <div>
               <font-awesome-icon :icon="['fab', 'fa-twitter']" />
               <a
-                href="https://twitter.com/intent/tweet?text=クリアしたよ！&url=https://flamboyant-beaver-eb2250.netlify.app"
+                href="https://twitter.com/intent/tweet?text=じゅげ〜むをクリアしたよ！🤗✨%0A&hashtags=じゅげむの覇者%0A&url=https://flamboyant-beaver-eb2250.netlify.app"
                 target="_blank"
                 rel="noopener noreferrer"
                 ><font-awesome-icon
@@ -162,7 +162,7 @@ export default {
       question_counts: 0,
       guage_process: 0,
       reloadBtn: "もう一度じゅげむする",
-      sec: 30,
+      sec: 45,
     };
   },
   methods: {
