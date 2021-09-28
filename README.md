@@ -1,24 +1,9 @@
-# typinggame
+# タイトル
+タイピングゲーム「じゅげ〜む」
 
-## Project setup
-```
-npm install
-```
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+# 背景
+Vue.jsを勉強してるものの、アウトプットを全くしていなかったので、勉強用として作成しました。
 
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+# URL
+https://flamboyant-beaver-eb2250.netlify.app/
