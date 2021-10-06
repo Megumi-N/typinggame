@@ -9,6 +9,7 @@
             <!-- タイトル部分 -->
             <div class="display-2 font-weight-bold mb-3 item delay-anime">
               <span
+                v-cloak
                 v-for="(t, index) in title"
                 :key="index"
                 class="item"
@@ -18,9 +19,8 @@
               </span>
             </div>
 
-            <div class="mt-5">
-              45秒で寿限無を打ち切れるか？<br />
-              挑戦者はボタンをクリック！
+            <div class="mt-5" v-cloak>
+              {{ subTitle }}
             </div>
             <v-btn
               color="#5f32b1"
@@ -29,6 +29,7 @@
               large
               @click="changeFlg"
               rounded
+              v-cloak
               >{{ start_btn }}
             </v-btn>
           </v-col>
@@ -43,8 +44,8 @@
           "
         >
           <v-col>
-            <div>残り：{{ sec }}秒</div>
-            <div class="quesiton">{{ current_question }}</div>
+            <div v-cloak>残り：{{ sec }}秒</div>
+            <div class="quesiton" v-cloak>{{ current_question }}</div>
             <div class="text-center">
               <v-text-field
                 class="text-field"
@@ -59,7 +60,9 @@
               height="25"
               rounded
             ></v-progress-linear>
-            <div>進捗：{{ current_question_counts }}/{{ question_counts }}</div>
+            <div v-cloak>
+              進捗：{{ current_question_counts }}/{{ question_counts }}
+            </div>
           </v-col>
         </v-row>
 
@@ -134,6 +137,8 @@ export default {
     return {
       title: "typing game",
       start_btn: "じゅげむる",
+      subTitle: `45秒で寿限無を打ち切れるか？
+              挑戦者はボタンをクリック！`,
       startFlag: "",
       current_question: "",
       questions: [
@@ -247,5 +252,9 @@ button {
 }
 .clearbtn {
   background-color: rgb(35, 175, 82) !important;
+}
+// マスタッシュ構文のチラつき防止
+[v-cloak] {
+  display: none;
 }
 </style>
