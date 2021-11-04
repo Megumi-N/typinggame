@@ -44,7 +44,7 @@
           "
         >
           <v-col>
-            <div v-cloak>残り：{{ sec }}秒</div>
+            <div v-cloak>残り時間：{{ sec }}秒</div>
             <div class="quesiton" v-cloak>{{ current_question }}</div>
             <div class="text-center">
               <v-text-field
